@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Snake {
-    int doDai = 1;  // Length of the snake, initially 1
+    int length = 3;  // Length of the snake, initially 1
     int[] x;  // Array to store the x-coordinates of the snake's segments
     int[] y;  // Array to store the y-coordinates of the snake's segments
 
@@ -19,6 +19,11 @@ public class Snake {
         y = new int[20];
         x[0] = 5;  // Initial x-coordinate of the snake's head
         y[0] = 4;  // Initial y-coordinate of the snake's head
+
+        x[1] =5;
+        y[1] = 3;
+        x[2] = 5;
+        y[2] = 2;
     }
 
     public void setVector(int vector) {
@@ -28,7 +33,13 @@ public class Snake {
     }
 
     public void update() {
-        if (System.currentTimeMillis() - t1 > 1000) {
+        if (System.currentTimeMillis() - t1 > 500) {
+            for(int i = this.length -1; i > 0; i--) {
+                x[i] = x[i-1];
+                y[i] = y[i-1];
+            }
+
+            // update the head of the snake
             if (vector == Snake.GO_UP) {
                 y[0]--;
             }
@@ -41,13 +52,19 @@ public class Snake {
             if (vector == Snake.GO_RIGHT) {
                 x[0]++;
             }
+
+            if(x[0] < 0) x[0] = 19;
+            if(x[0] > 19) x[0] = 0;
+            if(y[0] < 0) y[0] = 19;
+            if(y[0] > 19) y[0] = 0;
+
             t1 = System.currentTimeMillis();
         }
     }
 
     public void paintSnake(Graphics g) {
         g.setColor(Color.RED);
-        for (int i = 0; i < doDai; i++) {
+        for (int i = 0; i < this.length; i++) {
             g.fillRect(x[i] * 20 + 1, y[i] * 20 + 1, 18, 18);
         }
     }
