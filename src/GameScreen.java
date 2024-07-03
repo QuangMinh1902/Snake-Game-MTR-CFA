@@ -3,12 +3,11 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Image;
 import javax.imageio.ImageIO;
-import java.io.File;
 import java.io.InputStream;
 import java.awt.Font;
 
 public class GameScreen extends JPanel implements Runnable {
-    static int [][] bg = new int[20][20];
+    static int[][] bg = new int[20][20];
     static int padding = 10;
     static int WIDTH = 400;
     static int HEIGHT = 400;
@@ -19,6 +18,7 @@ public class GameScreen extends JPanel implements Runnable {
     Snake snake;
 
     Thread thread;
+
     public GameScreen() {
         snake = new Snake();
         Data.loadImage();
@@ -28,12 +28,11 @@ public class GameScreen extends JPanel implements Runnable {
     }
 
     public void run() {
-        long t = 0;
         long t2 = 0;
         while (true) {
-            if(System.currentTimeMillis() - t2 > 500) {
+            if (System.currentTimeMillis() - t2 > 500) {
                 enableTextStartGame = !enableTextStartGame;
-                t2= System.currentTimeMillis();
+                t2 = System.currentTimeMillis();
             }
             if (isPlaying) {
                 snake.update();
@@ -44,6 +43,9 @@ public class GameScreen extends JPanel implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            if (!isPlaying) {
+                repaint();
+            }
         }
     }
 
@@ -53,33 +55,29 @@ public class GameScreen extends JPanel implements Runnable {
         paintBg(g);
         snake.paintSnake(g);
         this.paintFrame(g);
-        if(!isPlaying){
-            if(enableTextStartGame){
-                g.setColor(Color.YELLOW);
-                g.setFont(new Font("Arial", Font.BOLD, 18));
-                g.drawString("Press SPACE to start", 100, 200);
-            }
-
+        if (!isPlaying && enableTextStartGame) {
+            g.setColor(Color.YELLOW);
+            g.setFont(new Font("Arial", Font.BOLD, 18));
+            g.drawString("Press SPACE to start", 100, 200);
         }
     }
 
     public void paintBg(Graphics g) {
         g.setColor(Color.GRAY);
-        g.fillRect(0, 0, WIDTH + padding*2, HEIGHT + padding*2);
+        g.fillRect(0, 0, WIDTH + padding * 2, HEIGHT + padding * 2);
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 if (bg[i][j] == 2) {
-                   g.drawImage(Data.imagePrey, i * 20 , j * 20  , null);
+                    g.drawImage(Data.imagePrey, i * 20, j * 20, null);
                 }
             }
         }
-
     }
 
     private void paintFrame(Graphics g) {
         g.setColor(Color.ORANGE);
-        g.drawRect(0, 0, WIDTH + padding*2, HEIGHT + padding*2);
-        g.drawRect(1, 1, WIDTH + padding*2 -2, HEIGHT + padding*2 -2);
-        g.drawRect(2, 2, WIDTH + padding*2 -4, HEIGHT + padding*2 -4);
+        g.drawRect(0, 0, WIDTH + padding * 2, HEIGHT + padding * 2);
+        g.drawRect(1, 1, WIDTH + padding * 2 - 2, HEIGHT + padding * 2 - 2);
+        g.drawRect(2, 2, WIDTH + padding * 2 - 4, HEIGHT + padding * 2 - 4);
     }
 }
