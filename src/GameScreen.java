@@ -27,6 +27,7 @@ public class GameScreen extends JPanel implements Runnable {
 
     @Override
     public void paint(Graphics g) {
+        super.paint(g); // Ensure the panel is properly rendered before custom drawing
         paintBg(g);
         snake.paintSnake(g);
     }
