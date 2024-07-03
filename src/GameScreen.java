@@ -3,12 +3,13 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 public class GameScreen extends JPanel implements Runnable {
-    int[][] bg = new int[20][20];
+    static int [][] bg = new int[20][20];
     Snake snake;
 
     Thread thread;
     public GameScreen() {
         snake = new Snake();
+        bg[10][10] = 2;
         thread = new Thread(this);
         thread.start();
     }
@@ -36,10 +37,12 @@ public class GameScreen extends JPanel implements Runnable {
         g.setColor(Color.GRAY);
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                if (bg[i][j] == 0) g.setColor(Color.GRAY);
-                if (bg[i][j] == 1) g.setColor(Color.RED);
-                if (bg[i][j] == 2) g.setColor(Color.YELLOW);
-                g.fillRect(i * 20 + 1, j * 20 + 1, 18, 18);
+                g.fillRect(i * 20 +1, j * 20 +1, 18, 18);
+                if(bg[i][j] == 2) {
+                    g.setColor(Color.RED);
+                    g.fillRect(i * 20 +1, j * 20 +1, 18, 18);
+                    g.setColor(Color.GRAY);
+                }
             }
         }
     }

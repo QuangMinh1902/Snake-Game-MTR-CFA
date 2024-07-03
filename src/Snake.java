@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class Snake {
     int length = 3;  // Length of the snake, initially 1
@@ -32,8 +33,34 @@ public class Snake {
         }
     }
 
+    public Point getCoordinates() {
+       Random r = new Random();
+       int x;
+       int y;
+       do {
+           x = r.nextInt(19);
+           y = r.nextInt(19);
+       } while (this.checkCoordinate(x,y));
+       return new Point(x, y);
+    }
+
+    public boolean checkCoordinate(int x1,int y1) {
+       for(int i = 0; i < this.length; i++) {
+          if(x[i] == x1 && y[i] == y1) {
+              return true;
+          }
+       }
+       return false;
+    }
+
     public void update() {
         if (System.currentTimeMillis() - t1 > 500) {
+            if(GameScreen.bg[x[0]][y[0]] == 2) {
+                length++;
+                GameScreen.bg[x[0]][y[0]] = 0;
+                GameScreen.bg[this.getCoordinates().x][this.getCoordinates().y] = 2;
+            }
+
             for(int i = this.length -1; i > 0; i--) {
                 x[i] = x[i-1];
                 y[i] = y[i-1];
@@ -53,6 +80,7 @@ public class Snake {
                 x[0]++;
             }
 
+            // check if the snake is out of bounds
             if(x[0] < 0) x[0] = 19;
             if(x[0] > 19) x[0] = 0;
             if(y[0] < 0) y[0] = 19;
