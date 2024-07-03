@@ -1,6 +1,9 @@
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.io.File;
 
 public class GameScreen extends JPanel implements Runnable {
     static int [][] bg = new int[20][20];
@@ -9,6 +12,7 @@ public class GameScreen extends JPanel implements Runnable {
     Thread thread;
     public GameScreen() {
         snake = new Snake();
+        Data.loadImage();
         bg[10][10] = 2;
         thread = new Thread(this);
         thread.start();
@@ -19,7 +23,7 @@ public class GameScreen extends JPanel implements Runnable {
             snake.update();
             repaint();
             try {
-                Thread.sleep(20);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -35,13 +39,11 @@ public class GameScreen extends JPanel implements Runnable {
 
     public void paintBg(Graphics g) {
         g.setColor(Color.GRAY);
+        g.fillRect(0, 0, 400, 400);
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                g.fillRect(i * 20 +1, j * 20 +1, 18, 18);
-                if(bg[i][j] == 2) {
-                    g.setColor(Color.RED);
-                    g.fillRect(i * 20 +1, j * 20 +1, 18, 18);
-                    g.setColor(Color.GRAY);
+                if (bg[i][j] == 2) {
+                   g.drawImage(Data.imagePrey, i * 20 , j * 20  , null);
                 }
             }
         }
