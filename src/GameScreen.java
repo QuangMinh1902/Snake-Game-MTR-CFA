@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Image;
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.InputStream;
+import java.awt.Font;
 
 public class GameScreen extends JPanel implements Runnable {
     static int [][] bg = new int[20][20];
@@ -12,6 +14,7 @@ public class GameScreen extends JPanel implements Runnable {
     static int HEIGHT = 400;
 
     static boolean isPlaying = false;
+    static boolean enableTextStartGame = true;
 
     Snake snake;
 
@@ -25,7 +28,13 @@ public class GameScreen extends JPanel implements Runnable {
     }
 
     public void run() {
+        long t = 0;
+        long t2 = 0;
         while (true) {
+            if(System.currentTimeMillis() - t2 > 500) {
+                enableTextStartGame = !enableTextStartGame;
+                t2= System.currentTimeMillis();
+            }
             if (isPlaying) {
                 snake.update();
                 repaint();
@@ -44,6 +53,14 @@ public class GameScreen extends JPanel implements Runnable {
         paintBg(g);
         snake.paintSnake(g);
         this.paintFrame(g);
+        if(!isPlaying){
+            if(enableTextStartGame){
+                g.setColor(Color.YELLOW);
+                g.setFont(new Font("Arial", Font.BOLD, 18));
+                g.drawString("Press SPACE to start", 100, 200);
+            }
+
+        }
     }
 
     public void paintBg(Graphics g) {
