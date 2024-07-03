@@ -34,6 +34,9 @@ public class SnakeEatsPrey extends JFrame {
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 gameScreen.snake.setVector(Snake.GO_LEFT);
             }
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                gameScreen.isPlaying = !gameScreen.isPlaying;
+            }
         }
 
         @Override

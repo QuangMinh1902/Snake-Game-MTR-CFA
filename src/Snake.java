@@ -54,7 +54,7 @@ public class Snake {
     }
 
     public void update() {
-        if (System.currentTimeMillis() - t1 > 500) {
+        if (System.currentTimeMillis() - t1 > 200) {
             if(GameScreen.bg[x[0]][y[0]] == 2) {
                 length++;
                 GameScreen.bg[x[0]][y[0]] = 0;

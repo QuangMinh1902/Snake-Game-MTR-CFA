@@ -7,6 +7,12 @@ import java.io.File;
 
 public class GameScreen extends JPanel implements Runnable {
     static int [][] bg = new int[20][20];
+    static int padding = 10;
+    static int WIDTH = 400;
+    static int HEIGHT = 400;
+
+    static boolean isPlaying = false;
+
     Snake snake;
 
     Thread thread;
@@ -20,8 +26,10 @@ public class GameScreen extends JPanel implements Runnable {
 
     public void run() {
         while (true) {
-            snake.update();
-            repaint();
+            if (isPlaying) {
+                snake.update();
+                repaint();
+            }
             try {
                 Thread.sleep(300);
             } catch (InterruptedException e) {
@@ -35,11 +43,12 @@ public class GameScreen extends JPanel implements Runnable {
         super.paint(g); // Ensure the panel is properly rendered before custom drawing
         paintBg(g);
         snake.paintSnake(g);
+        this.paintFrame(g);
     }
 
     public void paintBg(Graphics g) {
         g.setColor(Color.GRAY);
-        g.fillRect(0, 0, 400, 400);
+        g.fillRect(0, 0, WIDTH + padding*2, HEIGHT + padding*2);
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 if (bg[i][j] == 2) {
@@ -47,5 +56,13 @@ public class GameScreen extends JPanel implements Runnable {
                 }
             }
         }
+
+    }
+
+    private void paintFrame(Graphics g) {
+        g.setColor(Color.ORANGE);
+        g.drawRect(0, 0, WIDTH + padding*2, HEIGHT + padding*2);
+        g.drawRect(1, 1, WIDTH + padding*2 -2, HEIGHT + padding*2 -2);
+        g.drawRect(2, 2, WIDTH + padding*2 -4, HEIGHT + padding*2 -4);
     }
 }
