@@ -33,8 +33,8 @@ public class Snake {
     }
 
     public void resetGame() {
-        this.x = new int[100];
-        this.y = new int[100];
+        this.x = new int[200];
+        this.y = new int[200];
 
         x[0] = 5;  // Initial x-coordinate of the snake's head
         y[0] = 4;  // Initial y-coordinate of the snake's head
