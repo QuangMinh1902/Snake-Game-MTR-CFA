@@ -17,8 +17,8 @@ public class Snake {
     long t1 = 0;  // Time marker to control the snake's movement speed
     long t2 = 0;
 
-    int speed = 300;
-    int maxLen = 10;
+    int speed = 100;
+    int maxLen = 30;
 
     public Snake() {
         x = new int[20];
@@ -46,7 +46,7 @@ public class Snake {
         this.length = 3;
         this.vector = Snake.GO_DOWN;
         this.nextVector = vector;  // Reset nextVector
-        this.speed = 300;  // Reset speed if necessary
+        this.speed = 100;  // Reset speed if necessary
     }
 
     public void setVector(int vector) {
@@ -75,11 +75,20 @@ public class Snake {
         return false;
     }
 
+    public int getCurrentSpeed (){
+        int speed = 100;
+        for(int i = 0; i < GameScreen.CurrentLevel; i++){
+            speed *= 0.8;
+        }
+        return speed;
+    }
+
     public void update() {
         if (this.length == this.maxLen) {
             GameScreen.isPlaying = false;
             this.resetGame();
-            this.speed = (int) (this.speed * 0.8);
+            GameScreen.CurrentLevel++;
+            this.speed = this.getCurrentSpeed();
         }
 
         for (int i = 1; i < this.length; i++) {

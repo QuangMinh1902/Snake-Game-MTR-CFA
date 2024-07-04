@@ -18,6 +18,7 @@ public class GameScreen extends JPanel implements Runnable {
     Snake snake;
 
     Thread thread;
+    static int CurrentLevel = 1;
     static boolean isGameOver = false;
 
     public GameScreen() {
@@ -66,6 +67,9 @@ public class GameScreen extends JPanel implements Runnable {
             g.setFont(new Font("Arial", Font.BOLD, 18));
             g.drawString("Game Over", 100, 250);
         }
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 18));
+        g.drawString("Level: " + CurrentLevel, 450, 100); // Display the current level
     }
 
     public void paintBg(Graphics g) {
