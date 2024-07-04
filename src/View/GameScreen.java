@@ -2,6 +2,7 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
+import Model.*;
 
 public class GameScreen extends JPanel implements Runnable {
     static int[][] bg = new int[20][20];

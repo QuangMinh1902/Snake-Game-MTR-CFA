@@ -1,3 +1,5 @@
+package Model;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.InputStream;
@@ -9,9 +11,9 @@ public class Data {
 
     public static void loadImage() {
         try {
-            InputStream head = Data.class.getResourceAsStream("assets/head.png");
-            InputStream body = Data.class.getResourceAsStream("assets/body.png");
-            InputStream prey = Data.class.getResourceAsStream("assets/worm.png");
+            InputStream head = Data.class.getResourceAsStream("../assets/head.png");
+            InputStream body = Data.class.getResourceAsStream("../assets/body.png");
+            InputStream prey = Data.class.getResourceAsStream("../assets/worm.png");
             if (head != null && body != null && prey != null) {
                 imageHead = ImageIO.read(head);
                 imageBody = ImageIO.read(body);

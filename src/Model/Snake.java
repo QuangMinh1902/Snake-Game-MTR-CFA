@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+import Model.HighScoreManager;
+import Model.Data;
 
 public class Snake {
     int length = 3;  // Length of the snake, initially 3
