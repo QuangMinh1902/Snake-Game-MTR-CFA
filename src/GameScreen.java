@@ -56,7 +56,7 @@ public class GameScreen extends JPanel implements Runnable {
         paintBg(g);
         snake.paintSnake(g);
         this.paintFrame(g);
-        if (!isPlaying && enableTextStartGame) {
+        if (!isPlaying && enableTextStartGame && !isGameOver) {
             g.setColor(Color.YELLOW);
             g.setFont(new Font("Arial", Font.BOLD, 18));
             g.drawString("Press SPACE to start", 100, 200);
