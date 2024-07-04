@@ -85,11 +85,21 @@ public class GameScreen extends JPanel implements Runnable {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 if (bg[i][j] == 2) {
-                    g.drawImage(Data.imagePrey, i * 20, j * 20, null);
+                    boolean isSnakeBody = false;
+                    for (int k = 1; k < snake.length; k++) {
+                        if (snake.x[k] == i && snake.y[k] == j) {
+                            isSnakeBody = true;
+                            break;
+                        }
+                    }
+                    if (!isSnakeBody) {
+                        g.drawImage(Data.imagePrey, i * 20, j * 20, null);
+                    }
                 }
             }
         }
     }
+
 
     private void paintFrame(Graphics g) {
         g.setColor(Color.ORANGE);
