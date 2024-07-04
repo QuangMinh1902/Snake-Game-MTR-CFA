@@ -7,7 +7,7 @@ public class SnakeEatsPrey extends JFrame {
     GameScreen gameScreen;
 
     public SnakeEatsPrey() {
-        setSize(500, 500);
+        setSize(650, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameScreen = new GameScreen();
         add(gameScreen);
