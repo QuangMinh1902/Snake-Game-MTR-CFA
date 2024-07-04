@@ -17,6 +17,9 @@ public class SnakeEatsPrey extends JFrame {
 
     public static void main(String[] args) {
         SnakeEatsPrey f = new SnakeEatsPrey();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            HighScoreManager.saveHighScore(GameScreen.highScore);
+        }));
     }
 
     private class handler implements KeyListener {

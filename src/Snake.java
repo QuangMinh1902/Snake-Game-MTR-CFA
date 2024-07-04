@@ -97,6 +97,11 @@ public class Snake {
                 GameScreen.isPlaying = false;
                 GameScreen.isGameOver = true;
 
+                if (GameScreen.point > GameScreen.highScore) {
+                    GameScreen.highScore = GameScreen.point;
+                    HighScoreManager.saveHighScore(GameScreen.highScore);
+                }
+
                 GameScreen.point = 0;
                 GameScreen.CurrentLevel = 1;
             }
@@ -109,7 +114,12 @@ public class Snake {
                 this.length++;
                 GameScreen.bg[x[0]][y[0]] = 0;
                 GameScreen.bg[this.getCoordinates().x][this.getCoordinates().y] = 2;
-                GameScreen.point+=100;
+                GameScreen.point += 100;
+
+                if (GameScreen.point > GameScreen.highScore) {
+                    GameScreen.highScore = GameScreen.point;
+                    HighScoreManager.saveHighScore(GameScreen.highScore);
+                }
             }
 
             for (int i = this.length - 1; i > 0; i--) {

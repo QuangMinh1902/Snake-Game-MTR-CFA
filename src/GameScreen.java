@@ -21,6 +21,7 @@ public class GameScreen extends JPanel implements Runnable {
     static int CurrentLevel = 1;
     static int point = 0;
     static boolean isGameOver = false;
+    static int highScore = HighScoreManager.loadHighScore(); // Load the high score
 
     public GameScreen() {
         snake = new Snake();
@@ -74,11 +75,12 @@ public class GameScreen extends JPanel implements Runnable {
 
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString("Points: " + point, 450, 150);
+        g.drawString("High Score: " + highScore, 450, 200); // Display the high score
     }
 
     public void paintBg(Graphics g) {
         g.setColor(Color.GRAY);
-        g.fillRect(0, 0, WIDTH + padding * 2 +200, HEIGHT + padding * 2);
+        g.fillRect(0, 0, WIDTH + padding * 2 + 200, HEIGHT + padding * 2);
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 if (bg[i][j] == 2) {
@@ -90,12 +92,12 @@ public class GameScreen extends JPanel implements Runnable {
 
     private void paintFrame(Graphics g) {
         g.setColor(Color.ORANGE);
-        g.drawRect(0, 0, WIDTH + padding * 2 , HEIGHT + padding * 2);
-        g.drawRect(1, 1, WIDTH + padding * 2 - 2 , HEIGHT + padding * 2 - 2);
-        g.drawRect(2, 2, WIDTH + padding * 2 - 4 , HEIGHT + padding * 2 - 4);
+        g.drawRect(0, 0, WIDTH + padding * 2, HEIGHT + padding * 2);
+        g.drawRect(1, 1, WIDTH + padding * 2 - 2, HEIGHT + padding * 2 - 2);
+        g.drawRect(2, 2, WIDTH + padding * 2 - 4, HEIGHT + padding * 2 - 4);
 
         g.drawRect(0, 0, WIDTH + padding * 2 + 200, HEIGHT + padding * 2);
-        g.drawRect(1, 1, WIDTH + padding * 2 - 2 + 200 , HEIGHT + padding * 2 - 2);
-        g.drawRect(2, 2, WIDTH + padding * 2 - 4 + 200 , HEIGHT + padding * 2 - 4);
+        g.drawRect(1, 1, WIDTH + padding * 2 - 2 + 200, HEIGHT + padding * 2 - 2);
+        g.drawRect(2, 2, WIDTH + padding * 2 - 4 + 200, HEIGHT + padding * 2 - 4);
     }
 }
