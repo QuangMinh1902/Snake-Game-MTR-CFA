@@ -156,6 +156,6 @@ public class Snake {
         for (int i = 1; i < this.length; i++) {
             g.drawImage(Data.imageBody, x[i] * 20, y[i] * 20, null);
         }
-        g.drawImage(Data.imageHead, x[0] * 20, y[0] * 20, null);
+        g.drawImage(Data.imageHead, x[0] * 20 -2, y[0] * 20 -1, null);
     }
 }

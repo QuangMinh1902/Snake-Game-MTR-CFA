@@ -13,9 +13,9 @@ public class Data {
             InputStream body = Data.class.getResourceAsStream("assets/body.png");
             InputStream prey = Data.class.getResourceAsStream("assets/worm.png");
             if (head != null && body != null && prey != null) {
-                 imageHead = ImageIO.read(head);
-                 imageBody = ImageIO.read(body);
-                 imagePrey = ImageIO.read(prey);
+                imageHead = ImageIO.read(head);
+                imageBody = ImageIO.read(body);
+                imagePrey = ImageIO.read(prey);
                 // Resize the image to desired dimensions, for example, 50x50 pixels
                 imageHead = imageHead.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
                 imageBody = imageBody.getScaledInstance(15, 15, Image.SCALE_SMOOTH);
