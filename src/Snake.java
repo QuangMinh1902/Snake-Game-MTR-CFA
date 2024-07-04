@@ -14,6 +14,8 @@ public class Snake {
 
     int vector = Snake.GO_DOWN;  // Current direction of the snake, initially down
     long t1 = 0;  // Time marker to control the snake's movement speed
+    int speed = 500;
+    int maxLen = 5;
 
     public Snake() {
         x = new int[20];
@@ -25,6 +27,20 @@ public class Snake {
         y[1] = 3;
         x[2] = 5;
         y[2] = 2;
+    }
+
+    public void resetGame(){
+        this.x = new int[20];
+        this.y = new int[20];
+
+        x[0] = 5;  // Initial x-coordinate of the snake's head
+        y[0] = 4;  // Initial y-coordinate of the snake's head
+
+        x[1] =5;
+        y[1] = 3;
+        x[2] = 5;
+        y[2] = 2;
+        this.length = 3;
     }
 
     public void setVector(int vector) {
@@ -54,15 +70,20 @@ public class Snake {
     }
 
     public void update() {
+        if(this.length == this.maxLen) {
+            GameScreen.isPlaying = false;
+            this.resetGame();
+            this.speed = (int) (this.speed * 0.8);
+        }
+
         for(int i = 1; i < this.length ; i++) {
             if(x[0] == x[i] && y[0] == y[i]) {
                GameScreen.isPlaying = false;
                GameScreen.isGameOver = true;
-               break;
             }
         }
 
-        if (System.currentTimeMillis() - t1 > 200) {
+        if (System.currentTimeMillis() - t1 > this.speed) {
             if(GameScreen.bg[x[0]][y[0]] == 2) {
                 length++;
                 GameScreen.bg[x[0]][y[0]] = 0;

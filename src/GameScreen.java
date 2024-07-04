@@ -40,7 +40,7 @@ public class GameScreen extends JPanel implements Runnable {
                 repaint();
             }
             try {
-                Thread.sleep(300);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
