@@ -36,6 +36,7 @@ public class SnakeEatsPrey extends JFrame {
             }
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                 gameScreen.isPlaying = !gameScreen.isPlaying;
+                gameScreen.isGameOver = gameScreen.isGameOver ? false : gameScreen.isGameOver;
             }
         }
 

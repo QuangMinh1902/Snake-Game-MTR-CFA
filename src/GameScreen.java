@@ -18,6 +18,7 @@ public class GameScreen extends JPanel implements Runnable {
     Snake snake;
 
     Thread thread;
+    static boolean isGameOver = false;
 
     public GameScreen() {
         snake = new Snake();
@@ -59,6 +60,11 @@ public class GameScreen extends JPanel implements Runnable {
             g.setColor(Color.YELLOW);
             g.setFont(new Font("Arial", Font.BOLD, 18));
             g.drawString("Press SPACE to start", 100, 200);
+        }
+        if (isGameOver) {
+            g.setColor(Color.RED);
+            g.setFont(new Font("Arial", Font.BOLD, 18));
+            g.drawString("Game Over", 100, 250);
         }
     }
 

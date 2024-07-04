@@ -54,6 +54,14 @@ public class Snake {
     }
 
     public void update() {
+        for(int i = 1; i < this.length ; i++) {
+            if(x[0] == x[i] && y[0] == y[i]) {
+               GameScreen.isPlaying = false;
+               GameScreen.isGameOver = true;
+               break;
+            }
+        }
+
         if (System.currentTimeMillis() - t1 > 200) {
             if(GameScreen.bg[x[0]][y[0]] == 2) {
                 length++;
