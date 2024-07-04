@@ -14,8 +14,9 @@ public class Snake {
 
     int vector = Snake.GO_DOWN;  // Current direction of the snake, initially down
     long t1 = 0;  // Time marker to control the snake's movement speed
-    int speed = 500;
-    int maxLen = 5;
+    int speed = 300;
+    int maxLen = 10;
+
 
     public Snake() {
         x = new int[20];
