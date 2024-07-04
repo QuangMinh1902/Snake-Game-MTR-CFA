@@ -1,9 +1,6 @@
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.Image;
-import javax.imageio.ImageIO;
-import java.io.InputStream;
 import java.awt.Font;
 
 public class GameScreen extends JPanel implements Runnable {
@@ -22,6 +19,7 @@ public class GameScreen extends JPanel implements Runnable {
     static int point = 0;
     static boolean isGameOver = false;
     static int highScore = HighScoreManager.loadHighScore(); // Load the high score
+    static int nextLevelPoint; // Initialize the points required for the next level
 
     public GameScreen() {
         snake = new Snake();
@@ -29,6 +27,7 @@ public class GameScreen extends JPanel implements Runnable {
         bg[10][10] = 2;
         thread = new Thread(this);
         thread.start();
+        nextLevelPoint = (snake.maxLen - snake.length) * 100;
     }
 
     public void run() {
@@ -76,6 +75,7 @@ public class GameScreen extends JPanel implements Runnable {
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString("Points: " + point, 450, 150);
         g.drawString("High Score: " + highScore, 450, 200); // Display the high score
+        g.drawString("Next Level: " + nextLevelPoint, 450, 250); // Display the points for the next level
     }
 
     public void paintBg(Graphics g) {

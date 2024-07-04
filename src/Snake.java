@@ -47,6 +47,8 @@ public class Snake {
         this.vector = Snake.GO_DOWN;
         this.nextVector = vector;  // Reset nextVector
         this.speed = 100;  // Reset speed if necessary
+        this.maxLen = 10;  // Reset max length if necessary
+
     }
 
     public void setVector(int vector) {
@@ -90,6 +92,7 @@ public class Snake {
             GameScreen.CurrentLevel++;
             this.maxLen +=5;
             this.speed = this.getCurrentSpeed();
+            GameScreen.nextLevelPoint = GameScreen.point + (this.maxLen - this.length) * 100;  // Update the next level point based on the current level); // Update the points for the next level
         }
 
         for (int i = 1; i < this.length; i++) {
@@ -104,6 +107,7 @@ public class Snake {
 
                 GameScreen.point = 0;
                 GameScreen.CurrentLevel = 1;
+                GameScreen.nextLevelPoint = GameScreen.point + (this.maxLen - this.length) * 100; // Reset next level point
             }
         }
 
