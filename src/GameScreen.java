@@ -19,6 +19,7 @@ public class GameScreen extends JPanel implements Runnable {
 
     Thread thread;
     static int CurrentLevel = 1;
+    static int point = 0;
     static boolean isGameOver = false;
 
     public GameScreen() {
@@ -68,8 +69,11 @@ public class GameScreen extends JPanel implements Runnable {
             g.drawString("Game Over", 100, 250);
         }
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 18));
+        g.setFont(new Font("Arial", Font.BOLD, 28));
         g.drawString("Level: " + CurrentLevel, 450, 100); // Display the current level
+
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("Points: " + point, 450, 150);
     }
 
     public void paintBg(Graphics g) {

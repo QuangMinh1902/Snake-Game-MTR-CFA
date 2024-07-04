@@ -18,7 +18,7 @@ public class Snake {
     long t2 = 0;
 
     int speed = 100;
-    int maxLen = 30;
+    int maxLen = 10;
 
     public Snake() {
         x = new int[20];
@@ -33,8 +33,8 @@ public class Snake {
     }
 
     public void resetGame() {
-        this.x = new int[20];
-        this.y = new int[20];
+        this.x = new int[100];
+        this.y = new int[100];
 
         x[0] = 5;  // Initial x-coordinate of the snake's head
         y[0] = 4;  // Initial y-coordinate of the snake's head
@@ -60,8 +60,8 @@ public class Snake {
         int x;
         int y;
         do {
-            x = r.nextInt(19);
-            y = r.nextInt(19);
+            x = r.nextInt(20);  // Generate x coordinate in the range 0-19
+            y = r.nextInt(20);  // Generate y coordinate in the range 0-19
         } while (this.checkCoordinate(x, y));
         return new Point(x, y);
     }
@@ -88,6 +88,7 @@ public class Snake {
             GameScreen.isPlaying = false;
             this.resetGame();
             GameScreen.CurrentLevel++;
+            this.maxLen +=5;
             this.speed = this.getCurrentSpeed();
         }
 
@@ -95,6 +96,9 @@ public class Snake {
             if (x[0] == x[i] && y[0] == y[i]) {
                 GameScreen.isPlaying = false;
                 GameScreen.isGameOver = true;
+
+                GameScreen.point = 0;
+                GameScreen.CurrentLevel = 1;
             }
         }
 
@@ -102,9 +106,10 @@ public class Snake {
             this.vector = this.nextVector;
 
             if (GameScreen.bg[x[0]][y[0]] == 2) {
-                length++;
+                this.length++;
                 GameScreen.bg[x[0]][y[0]] = 0;
                 GameScreen.bg[this.getCoordinates().x][this.getCoordinates().y] = 2;
+                GameScreen.point+=100;
             }
 
             for (int i = this.length - 1; i > 0; i--) {
