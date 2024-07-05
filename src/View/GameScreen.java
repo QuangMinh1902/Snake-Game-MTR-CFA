@@ -68,6 +68,8 @@ public class GameScreen extends JPanel implements Runnable {
             g.setColor(Color.RED);
             g.setFont(new Font("Arial", Font.BOLD, 18));
             g.drawString("Game Over", 100, 250);
+            g.setColor(Color.YELLOW);
+            g.drawString("Press Space to restart", 100, 200);
         }
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 28));
@@ -80,13 +82,15 @@ public class GameScreen extends JPanel implements Runnable {
     }
 
     public void paintBg(Graphics g) {
-        g.setColor(Color.GRAY);
+        g.setColor(new Color(0x0072ff));
         g.fillRect(0, 0, WIDTH + padding * 2 + 250, HEIGHT + padding * 2);
+
+        // Draw prey image only where bg[i][j] == 2 and there's no snake body
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 if (bg[i][j] == 2) {
                     boolean isSnakeBody = false;
-                    for (int k = 1; k < snake.length; k++) {
+                    for (int k = 0; k < snake.length; k++) {
                         if (snake.x[k] == i && snake.y[k] == j) {
                             isSnakeBody = true;
                             break;

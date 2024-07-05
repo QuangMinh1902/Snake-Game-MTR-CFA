@@ -50,7 +50,7 @@ public class Snake {
         this.nextVector = vector;  // Reset nextVector
         this.speed = 100;  // Reset speed if necessary
         this.maxLen = 10;  // Reset max length if necessary
-
+        GameScreen.nextLevelPoint = (this.maxLen - this.length) * 100;
     }
 
     public void setVector(int vector) {
